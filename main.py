@@ -13,8 +13,9 @@ app = Flask(__name__)
 @app.route("/")
 def mainpage():
     content = {
+        'stan': acc.saldo_kwota,
         'title': 'Strona główna',
-        'products': list(acc.stan_magazynowy.keys())
+        'products': acc.stan_magazynowy
     }
 
     return render_template('index.html', contents=content)

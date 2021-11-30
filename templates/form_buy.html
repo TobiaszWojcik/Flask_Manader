@@ -3,7 +3,7 @@
         <h2>Kup</h2>
         <label for="produkt">Wybierz produkt:</label>
         <select id="produkt" name="product">
-            {% for product in contents.products %}
+            {% for product in contents.products.keys() %}
                 <option value="{{ product }}">{{ product }}</option>
             {% endfor %}
         </select>

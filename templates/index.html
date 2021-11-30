@@ -9,7 +9,10 @@
 {% endblock %}
 
 {% block content %}
-
+    <div>
+      <h2>Stan konta : {{ contents.stan/100 }}zł</h2>
+    </div>
+    <br>
     <div class="columns">
       <div class="column col-4">
         {% include 'form_saldo.html' %}
@@ -23,5 +26,31 @@
       <div class="column col-4">
         {% include 'form_buy.html' %}
       </div>
+    </div>
+    <div>
+        <div>
+            <h2>Stan Magazynu</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Lp.</th>
+                        <th>nazwa produktu</th>
+                        <th>ilość w magazynie</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                        {% for product, ilosc in contents.products.items() %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ product }}</td>
+                            <td>{{ ilosc }}</td>
+                        </tr>
+                        {% endfor %}
+
+
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}

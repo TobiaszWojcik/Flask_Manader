@@ -1,11 +1,13 @@
-<div id="header" class="panel-header navbar">
-  {% block header %}
+<div id="header" class="hero bg-dark hero-sm">
+    <div class="hero-body">
+      {% block header %}
 
-    <h1>{{contents.title}}</h1>
-<br>
-    <div class="nav, nav-item,navbar-section">
-      <a href="{{url_for('mainpage')}}" class="navbar-brand mr-2">Strona główna</a>
-      <a href="{{url_for('historypage')}}" class="navbar-brand mr-2">Historia</a>
+        <h1>{{contents.title}}</h1>
+    <br>
+        <div class=" nav-item ">
+          <a href="{{url_for('mainpage')}}" class="btn btn-primary input-group-btn">Strona główna</a>
+          <a href="{{url_for('historypage')}}" class="btn btn-primary input-group-btn">Historia</a>
+        </div>
+      {% endblock %}
     </div>
-  {% endblock %}
 </div>

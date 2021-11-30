@@ -9,22 +9,31 @@
     <title>Menager - {% block title %}{% endblock %}</title>
     {% endblock %}
   </head>
+
   <body>
-    <div class="columns">
+
+    <div class="columns " >
+
       <div class="col-2"></div>
+
       <div class="column col-8">
 
         {% include 'header.html' %}
 
-        <div id="content">{% block content %}{% endblock %}</div>
-        <div id="footer" class="panel-footer">
-          {% block footer %}
-          &copy; Copyright 2021 by <a href="https://github.com/TobiaszWojcik/Kurs">Tobiasz Wójcik</a>.
-          {% endblock %}
+        <div id="content" class="bg-gray" style="height:100%">
+
+          {% block content %}{% endblock %}
+
         </div>
 
+        {% include 'footer.html' %}
+
       </div>
+
       <div class="col-2"></div>
+
     </div>
+
   </body>
+
 </html>
