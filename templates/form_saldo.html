@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div class="form-group">
+    <form action="/" method="POST">
+        <input type="hidden"  name="action" value="saldo">
+        <h2>Saldo</h2>
+        <label for="wartosc">Wartość:</label>
+        <input id="wartosc" name="wartosc" type="number" placeholder="wartość">
+        <br>
+        <label for="comment">Ilosc sztuk:</label>
+        <input id="comment" name="comment" type="text" placeholder="wpisz komentarz">
+        <br>
+        <button class="btn btn-lg" type="submit">Zapisz</button>
+        <button class="btn btn-lg" type="reset">Wyczyść</button>
+    </form>
+</div>

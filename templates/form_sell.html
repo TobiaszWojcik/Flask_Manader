@@ -1,8 +1,10 @@
 <div class="form-group">
-    <form action="/" method="POST">
+    <form class ="form-horizontal" action="/" method="POST">
+        <input type="hidden"  name="action" value="sprzedaz">
         <h2>Sprzedaj</h2>
         <label for="produkt">Wybierz produkt:</label>
-        <select id="produkt" name="product">
+        <select id="produkt" name="product" required>
+            <option disabled selected>wybierz produkt</option>
             {% for product in contents.products.keys() %}
                 <option value="{{ product }}">{{ product }}</option>
             {% endfor %}
@@ -14,6 +16,7 @@
         <label for="pices">Ilosc sztuk:</label>
         <input id="pices" name="pices" type="number" placeholder="wpisz ilość sztuk">
         <br>
-        <button value="sell" type="submit">Zapisz</button> <button type="reset">Wyczyść</button>
+        <button class="btn btn-lg " type="submit">Zapisz</button>
+        <button class="btn btn-lg " type="reset">Wyczyść</button>
     </form>
 </div>

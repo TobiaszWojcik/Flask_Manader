@@ -1,7 +1,6 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
     <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
@@ -20,7 +19,7 @@
 
         {% include 'header.html' %}
 
-        <div id="content" class="bg-gray" style="height:100%">
+        <div id="content" class="bg-gray" style="min_height:300px">
 
           {% block content %}{% endblock %}
 

@@ -2,14 +2,30 @@
 {% block title %}{{contents.title}}{% endblock %}
 {% block head %}
   {{ super() }}
-  <style type="text/css">
-    .important { color: #336699; }
-  </style>
 {% endblock %}
 {% block header %}
-  <h1>{{contents.title}}</h1>
+
 {{ super() }}
 {% endblock %}
 
 {% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th>Lp.</th>
+      <th>Nazwa akcji</th>
+      <th>Wartości</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for line in contents.history %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ line.akcja }}</td>
+        <td>{{ line.parametry }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
 {% endblock %}

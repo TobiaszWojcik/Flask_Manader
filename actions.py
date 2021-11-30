@@ -7,20 +7,11 @@ class Manager:
     def assign(self, name):
         def decorate(arg):
             self.actions[name] = arg
-
         return decorate
 
     def execute(self, name, *args):
-        if name not in self.actions:
-            print("Action not defined")
-        else:
+        if name in self.actions:
             return self.actions[name](*args)
-
-    def execute_param(self, name, params):
-        if name not in self.actions:
-            print("Action not defined")
-        else:
-            return self.actions[name](params)
 
 
 class Account:
@@ -30,7 +21,7 @@ class Account:
         self.zapis_zdarzen = []
         self.stan_magazynowy = {}
 
-    def get_file_path (self, filepath):
+    def get_file_path(self, filepath):
         self.FILE_PATH = filepath
 
     def zapis_akcji(self, akcja, parametry):
@@ -42,54 +33,51 @@ class Account:
                 if (self.stan_magazynowy.get(identyfikator) + liczba_sztuk) >= 0:
                     self.stan_magazynowy[identyfikator] = self.stan_magazynowy.get(identyfikator) + liczba_sztuk
                 else:
-                    print("Brak wystarczającej ilości produktu {} w magazynie, pozostało {} szt.".format(
+
+                    return [False, "Brak wystarczającej ilości produktu {} w magazynie, pozostało {} szt.".format(
                             identyfikator,
-                            self.stan_magazynowy[identyfikator]))
-                    return False
+                            self.stan_magazynowy[identyfikator])]
             else:
-                print("Brak takiego produktu {} w magazynie.".format(identyfikator))
-                return False
+                return [False, "Brak takiego produktu {} w magazynie.".format(identyfikator)]
         else:
             if identyfikator in self.stan_magazynowy:
                 self.stan_magazynowy[identyfikator] = self.stan_magazynowy.get(identyfikator) + liczba_sztuk
             else:
                 self.stan_magazynowy[identyfikator] = liczba_sztuk
-        return True
+        return [True]
 
     def saldo(self, wartosc, komentarz="Brak komentarza"):
         if self.saldo_kwota + wartosc >= 0:
             self.saldo_kwota += wartosc
             self.zapis_akcji("saldo", [wartosc, komentarz])
-            return True
+            return [True]
         else:
-            print('Brak wystarczających środków na koncie')
-            return False
+            return [False, 'Brak wystarczających środków na koncie']
 
     def zakup(self, identyfikator, wartosc_jednostkowa, liczba_sztuk):
-        if wartosc_jednostkowa > 0 < liczba_sztuk:
+        if wartosc_jednostkowa >= 0 <= liczba_sztuk:
             if (self.saldo_kwota - (wartosc_jednostkowa * liczba_sztuk)) > 0:
                 self.dzialanie_magazyn(identyfikator, liczba_sztuk)
                 self.saldo_kwota -= (wartosc_jednostkowa * liczba_sztuk)
                 self.zapis_akcji("zakup", [identyfikator, wartosc_jednostkowa, liczba_sztuk])
-                return True
+                return [True]
             else:
-                print('Brak wystarczających środków na koncie')
-                return False
+                return [False, 'Brak wystarczających środków na koncie']
         else:
             print('Błąd wprowadzonych danych')
             return False
 
     def sprzedaz(self, identyfikator, wartosc_jednostkowa, liczba_sztuk):
         if wartosc_jednostkowa > 0 < liczba_sztuk:
-            if self.dzialanie_magazyn(identyfikator, liczba_sztuk * (-1)):
+            odpowiedz = self.dzialanie_magazyn(identyfikator, liczba_sztuk * (-1))
+            if odpowiedz[0]:
                 self.saldo_kwota += (wartosc_jednostkowa * liczba_sztuk)
                 self.zapis_akcji("sprzedaż", [identyfikator, wartosc_jednostkowa, liczba_sztuk])
-                return True
+                return [True]
             else:
-                return False
+                return odpowiedz
         else:
-            print('Błąd wprowadzonych danych')
-            return False
+            return [False, 'Błąd wprowadzonych danych']
 
     def import_db(self, tryb='r'):
         with open(self.FILE_PATH, tryb) as file:
@@ -125,14 +113,7 @@ class Account:
     def przeglad(self, start=0, stop=0):
         if stop == 0:
             stop = len(self.zapis_zdarzen)
-        for line in self.zapis_zdarzen[start:stop]:
-            for b in line.values():
-                if type(b) is tuple:
-                    for c in b:
-                        print(c)
-                else:
-                    print(b)
-        print("stop")
+        return self.zapis_zdarzen[start:stop]
 
     def update_db(self):
         with open(self.FILE_PATH, 'w') as file:

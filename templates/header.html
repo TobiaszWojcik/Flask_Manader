@@ -5,8 +5,8 @@
         <h1>{{contents.title}}</h1>
     <br>
         <div class=" nav-item ">
-          <a href="{{url_for('mainpage')}}" class="btn btn-primary input-group-btn">Strona główna</a>
-          <a href="{{url_for('historypage')}}" class="btn btn-primary input-group-btn">Historia</a>
+          <a href="{{ url_for('mainpage') }}" class="btn btn-primary input-group-btn">Strona główna</a>
+          <a href="{{ url_for('historypage', linefrom=0, lineto=0) }}" class="btn btn-primary input-group-btn">Historia</a>
         </div>
       {% endblock %}
     </div>

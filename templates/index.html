@@ -12,7 +12,12 @@
     <div>
       <h2>Stan konta : {{ contents.stan/100 }}zł</h2>
     </div>
-    <br>
+    {% if contents.error != None %}
+        <div class="error text-error">
+            <p><b>{{contents.error}}!</b></p>
+        </div>
+        <br>
+    {% endif %}
     <div class="columns">
       <div class="column col-4">
         {% include 'form_saldo.html' %}
@@ -27,8 +32,11 @@
         {% include 'form_buy.html' %}
       </div>
     </div>
+
     <div>
         <div>
+            <br>
+            <br>
             <h2>Stan Magazynu</h2>
             <table class="table">
                 <thead>
