@@ -37,7 +37,6 @@ def mainpage():
             acc.update_db()
         else:
             error = odp[1]
-    print(error)
     content = {
         'error': error,
         'stan': acc.saldo_kwota,
@@ -56,7 +55,6 @@ def historypage(linefrom=0, lineto=0):
         'title': 'Historia',
         'history': history
     }
-    print(content)
     return render_template('history.html', contents=content)
 
 
