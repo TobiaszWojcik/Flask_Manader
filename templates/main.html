@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    {% block head %}
+    <title>Menager - {% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+  <body>
+    <div class="columns">
+      <div class="col-2"></div>
+      <div class="column col-8">
+
+        {% include 'header.html' %}
+
+        <div id="content">{% block content %}{% endblock %}</div>
+        <div id="footer" class="panel-footer">
+          {% block footer %}
+          &copy; Copyright 2021 by <a href="https://github.com/TobiaszWojcik/Kurs">Tobiasz Wójcik</a>.
+          {% endblock %}
+        </div>
+
+      </div>
+      <div class="col-2"></div>
+    </div>
+  </body>
+</html>

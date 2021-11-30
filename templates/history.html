@@ -1,0 +1,15 @@
+{% extends "main.html" %}
+{% block title %}{{contents.title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block header %}
+  <h1>{{contents.title}}</h1>
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+{% endblock %}

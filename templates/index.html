@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block title %}{{contents.title}}{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block header %}
+
+{{ super() }}
+{% endblock %}
+
+{% block content %}
+
+    <div class="columns">
+      <div class="column col-4">
+        {% include 'form_saldo.html' %}
+        {% include 'form_add_product.html' %}
+      </div>
+
+      <div class="column col-4">
+        {% include 'form_sell.html' %}
+      </div>
+
+      <div class="column col-4">
+        {% include 'form_buy.html' %}
+      </div>
+    </div>
+{% endblock %}
